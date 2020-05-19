@@ -9,7 +9,7 @@ tasks:
     build:
         deps: [dependencies]
         cmds:
-            task: virtualenv
+            - task: virtualenv
 
     dependencies:
         summary: Install system dependencies
