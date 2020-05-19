@@ -1,0 +1,30 @@
+version: "2"
+
+vars:
+    VENV: ./venv
+    PYTHON: "{{.VENV}}/bin/python"
+    NODE_BIN_DIR: node_modules/.bin
+
+tasks:
+    build:
+        deps: [dependencies]
+        cmds:
+            task: virtualenv
+
+    dependencies:
+        summary: Install system dependencies
+        cmds:
+            - apt-get update
+            - apt-get install python3-venv python3-dev -y
+
+    virtualenv:
+        summary: Create a Python 3 virtualenv
+        cmds:
+            - "rm -rf {{.VENV}}"
+            - "python3 -m venv {{.VENV}}"
+            - "{{.VENV}}/bin/pip install --upgrade pip"
+            - "{{.VENV}}/bin/pip install -r requirements.txt"
+        sources:
+            - requirements.txt
+        generates:
+            - "{{.VENV}}"

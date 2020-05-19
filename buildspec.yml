@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      # Taskfile
+      - curl -sL https://taskfile.dev/install.sh | sh
+
+  build:
+    commands:
+        - ./bin/task build
