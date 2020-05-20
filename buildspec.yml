@@ -9,3 +9,13 @@ phases:
   build:
     commands:
         - ./bin/task build
+  
+  post_build:
+    commands:
+      - zip -r trigger.zip trigger
+      
+  artifacts:
+    files:
+      - 'trigger.zip'
+    discard-paths: yes
+      
